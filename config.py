@@ -4,6 +4,9 @@ SCRIPT_DIR = Path(__file__).parent
 DATA_PATH = SCRIPT_DIR / "txt"  # folder with document path
 DB_PATH = SCRIPT_DIR / "vector_db"  # child db path
 PARENT_DB_PATH = SCRIPT_DIR / "parent_db"  # parent db path
+JSON_PATH = SCRIPT_DIR / "json"  # json folder path
+PARENT_JSON = JSON_PATH / "parent_chunks"
+CHILD_JSON = JSON_PATH / "child_chunks"
 
 # chunks size
 PARENT_CHUNK_SIZE = 1500

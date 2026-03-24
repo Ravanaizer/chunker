@@ -1,7 +1,8 @@
 import io
 import sys
 
-from config import DATA_PATH, DB_PATH, PARENT_DB_PATH
+from config import CHILD_JSON, DATA_PATH, DB_PATH, PARENT_DB_PATH, PARENT_JSON
+from create_json import create_parent_child_json
 from db import create_parent_child_store, load_vectorstores
 from file_reader import load_documents
 from search_in_db import interactive_search
@@ -56,6 +57,24 @@ def main():
             interactive_search(child_db, parent_db, reranker, types)
         except Exception as e:
             print(f" Критическая ошибка: {e}")
+
+    elif select_category == 3:
+        try:
+            docs = load_documents(DATA_PATH)
+            if docs:
+                total_parent, total_child = create_parent_child_json(docs)
+
+                # if total_parent and total_child:
+                #     print("\n--- Структура папок ---")
+                #     print(f"  {PARENT_FOLDER.absolute()}")
+                #     print(f"  └── *.json (по одному на документ)")
+                #     print(f"  {CHILD_FOLDER.absolute()}")
+                #     print(f"  └── *.json (по одному на документ)")
+                #     print(f"\nВсего: {total_parent} родителей, {total_child} детей")
+            else:
+                print("\nДокументы не загружены.")
+        except Exception as e:
+            print(f"\nКритическая ошибка: {e}")
 
 
 if __name__ == "__main__":
